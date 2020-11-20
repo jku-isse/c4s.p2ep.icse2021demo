@@ -1,0 +1,70 @@
+package processdefinition;
+
+import org.slf4j.Logger
+import org.axonframework.commandhandling.gateway.CommandGateway
+
+import passiveprocessengine.definition.DecisionNodeDefinition.States
+import passiveprocessengine.instance.WorkflowInstance
+import passiveprocessengine.instance.DecisionNodeInstance
+import passiveprocessengine.instance.IBranchInstance.BranchState
+import passiveprocessengine.definition.DecisionNodeDefinition
+import passiveprocessengine.definition.DecisionNodeDefinition.States
+import passiveprocessengine.definition.TaskDefinition
+import passiveprocessengine.definition.NoOpTaskDefinition
+import passiveprocessengine.instance.WorkflowTask
+import passiveprocessengine.definition.TaskLifecycle.Events
+import passiveprocessengine.instance.AbstractWorkflowInstanceObject
+import passiveprocessengine.definition.WorkflowDefinition
+import passiveprocessengine.instance.ResourceLink
+import passiveprocessengine.instance.QACheckDocument
+import passiveprocessengine.instance.RuleEngineBasedConstraint
+
+import impactassessment.api.Commands.CompleteDataflowCmd
+import impactassessment.api.Commands.ActivateInBranchCmd
+import impactassessment.api.Commands.ActivateOutBranchCmd
+import impactassessment.api.Commands.ActivateInOutBranchCmd
+import impactassessment.api.Commands.ActivateInOutBranchesCmd
+
+import impactassessment.jiraartifact.IJiraArtifact
+import impactassessment.jiraartifact.subinterfaces.IJiraStatus
+
+import java.util.List
+import java.util.Set
+import java.util.ArrayList
+import java.util.stream.Collectors
+import passiveprocessengine.instance.ResourceLink
+import impactassessment.passiveprocessengine.ResourceLinkFactory
+
+
+global CommandGateway commandGateway;
+
+rule "Activate-Prepare2Implement"
+    when
+        $task : WorkflowTask( getType().getId().equals("Prepare Implementation") )
+        						@watch ( outputState, lifecycleState )
+        $dn : DecisionNodeInstance( getDefinition().getId().equals("prepare2implement") &&
+        							getInBranchIdForWorkflowTask($task) != null &&
+        							!isTaskCompletionConditionsFullfilled()
+        							, $a : (IJiraArtifact) $task.getAnyOneOutputByRole("ROLE_WPTICKET")
+        							, $qacd : getAnyOneOutputByRole("QA_PROCESS_CONSTRAINTS_CHECK") )
+        eval ( $qacd.areConstraintsFulfilled()==true )
+        eval ( $a.getStatus().getName().equals("In Progress")
+    then
+        commandGateway.send(new ActivateInOutBranchCmd($task.getWorkflow().getId(), $dn.getId(), $task.getId(), "implementIn"));
+end
+
+
+rule "Activate-Implement2End"
+    when
+        $task : WorkflowTask( getType().getId().equals("Prepare Implementation") )
+        						@watch ( outputState, lifecycleState )
+        $dn : DecisionNodeInstance( getDefinition().getId().equals("implement2end") &&
+        							getInBranchIdForWorkflowTask($task) != null &&
+        							!isTaskCompletionConditionsFullfilled()
+        							, $a : (IJiraArtifact) $task.getAnyOneOutputByRole("ROLE_WPTICKET")
+        							, $qacd : getAnyOneOutputByRole("QA_PROCESS_CONSTRAINTS_CHECK") )
+        eval ( $qacd.areConstraintsFulfilled()==true )
+        eval ( $a.getStatus().getName().equals("Closed")
+    then
+        commandGateway.send(new ActivateInOutBranchCmd($task.getWorkflow().getId(), $dn.getId(), $task.getId(), "endIn"));
+end

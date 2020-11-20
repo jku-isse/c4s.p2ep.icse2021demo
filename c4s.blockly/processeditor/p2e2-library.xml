@@ -1,0 +1,167 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="~UV1?9I59ud9reDS_.y(" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">DecisionNode</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <value name="TOOLTIP">
+      <block type="text" id="+r3Vwu(Hk~UL_ocRMY|Q" deletable="false" movable="false">
+        <field name="TEXT">Defines control flow of artifacts between Steps</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="0QK#PrC+zn4h)l;|B/M2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="BWsey9ErFA^l,7+};Ss!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="4`%:Zby69^]KJZJtx)2;"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="%mA`n!y$chEw*(s+_Sey">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="sq(vIs#SD8OObLV7*;N1" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">artifact</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_value" id=";X-tVG-JnYw09@l*wjY)">
+        <field name="INPUTNAME">role</field>
+        <field name="ALIGN">LEFT</field>
+        <value name="TYPE">
+          <shadow type="type_null" id="vb9tKRNaXuvv@fGGoq`S"></shadow>
+          <block type="type_string" id=")kwSFH5#88d4o[`KRz+H"></block>
+        </value>
+        <next>
+          <block type="input_value" id="-_g(c~Ef~8p)%65C}+FU">
+            <field name="INPUTNAME">type</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="EyMZ^Uz|;d**#Erywb_h"></shadow>
+              <block type="type_string" id="%:N~{NrPGzNYo+Z:P`^+"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="*fz,5a`%EJAGm.:^dcCa" deletable="false" movable="false">
+        <field name="TEXT">Defines an artifact use </field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="bSKMIN+M[iL3sZ4wxLQ#" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="/m4jBQWRQ(9NO`[IzAT_">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="~UV1?9I59ud9reDS_.y(" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">Step</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="[X9%@XO8BF*G}(SV)@|C">
+        <field name="INPUTNAME">input</field>
+        <field name="ALIGN">LEFT</field>
+        <value name="TYPE">
+          <shadow type="type_null" id=".q]Z`dXURjPOgFRU!07p"></shadow>
+          <block type="type_list" id="R~7P8IMAfXl,@j9I4)=L"></block>
+        </value>
+        <next>
+          <block type="input_value" id="z$s[)GaJ~u#Js!DL?_r+">
+            <field name="INPUTNAME">output</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="z7wGjd.PKgSZ]i)?M},o"></shadow>
+              <block type="type_other" id="b~]2[rN:1+FB*.uoyqZ/">
+                <field name="TYPE">artifact</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+r3Vwu(Hk~UL_ocRMY|Q" deletable="false" movable="false">
+        <field name="TEXT">Defines control flow of artifacts between Steps</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="0QK#PrC+zn4h)l;|B/M2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="BWsey9ErFA^l,7+};Ss!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="4`%:Zby69^]KJZJtx)2;"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="%mA`n!y$chEw*(s+_Sey">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="~UV1?9I59ud9reDS_.y(" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">executeStep</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="[X9%@XO8BF*G}(SV)@|C">
+        <field name="INPUTNAME">input</field>
+        <field name="ALIGN">LEFT</field>
+        <value name="TYPE">
+          <shadow type="type_null" id=".q]Z`dXURjPOgFRU!07p"></shadow>
+          <block type="type_list" id="R~7P8IMAfXl,@j9I4)=L"></block>
+        </value>
+        <next>
+          <block type="input_value" id="z$s[)GaJ~u#Js!DL?_r+">
+            <field name="INPUTNAME">output</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="z7wGjd.PKgSZ]i)?M},o"></shadow>
+              <block type="type_other" id="b~]2[rN:1+FB*.uoyqZ/">
+                <field name="TYPE">artifact</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+r3Vwu(Hk~UL_ocRMY|Q" deletable="false" movable="false">
+        <field name="TEXT">Defines control flow of artifacts between Steps</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="0QK#PrC+zn4h)l;|B/M2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="BWsey9ErFA^l,7+};Ss!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="4`%:Zby69^]KJZJtx)2;"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="%mA`n!y$chEw*(s+_Sey">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block></xml>

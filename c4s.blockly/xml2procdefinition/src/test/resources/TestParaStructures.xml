@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</variable>
+    <variable id="C}~IFKh2q9+K52HJZS{u">JamaItem</variable>
+    <variable id="00!j^R$psKm^md17cto=">JamaWP</variable>
+    <variable id="-ELj8|yM2)EM#BRu2oUv">id</variable>
+    <variable id="FXb:NaK2kE[[e!EmwJ?l">reqCheck</variable>
+    <variable id="H*(/84b5qn,4;qwF$OK%">DefaultIssue</variable>
+    <variable id="`L_Jz/2.5WU?|CzakPQz">el</variable>
+    <variable id="wm4rq~,=JFN5gJDaa_x?">WPIssue</variable>
+    <variable id="9}?Vnd.A!0i!DAs9.L3Q">el2</variable>
+  </variables>
+<block type="procedures_defnoreturn" id="rtJ1k|cV8w(DT?%U6+uL" x="-37" y="-838">
+    <field name="NAME">TestProc1</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="step" id="cmjt*gHw#rt@GrF1C*]F">
+        <field name="StepId">Step1</field>
+        <next>
+          <block type="parallelexecution" id="%U[~_s6@^Ae`z,$rmwfe">
+            <field name="OutFlowType">SYNC</field>
+            <field name="InFlowType">OR</field>
+            <statement name="DO0">
+              <block type="parallelexecution" id="7LN]HXbcur|CqX^#}sYQ">
+                <mutation doPart="1"></mutation>
+                <field name="OutFlowType">SYNC</field>
+                <field name="InFlowType">AND</field>
+                <statement name="DO0">
+                  <block type="step" id="~g2UuC2h3_!l^O]Jb3d/">
+                    <field name="StepId">Step1b</field>
+                  </block>
+                </statement>
+                <statement name="DO1">
+                  <block type="step" id="3Y*ns11n-|TM/l+p|G_Y">
+                    <field name="StepId">Step1c</field>
+                  </block>
+                </statement>
+                <next>
+                  <block type="step" id="bX^I54Y+tGZ.32Mg#LZE">
+                    <field name="StepId">Step1d</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="step" id="3i(cJq.s?mhN,@O{O/pL">
+                <field name="StepId">Step2</field>
+                <next>
+                  <block type="parallelexecution" id="R(_6@_=|F-XynCc#/*CY">
+                    <mutation doPart="1"></mutation>
+                    <field name="OutFlowType">SYNC</field>
+                    <field name="InFlowType">XOR</field>
+                    <statement name="DO0">
+                      <block type="parallelexecution" id="zStwi/2{7Wi.m#!pq_G[">
+                        <field name="OutFlowType">SYNC</field>
+                        <field name="InFlowType">XOR</field>
+                        <statement name="DO0">
+                          <block type="checkpoint" id="BcF|H68a9|mLXuGLmQ/,">
+                            <value name="NAME">
+                              <block type="logic_boolean" id="W:a$XO``d0@cq!0-GQ[h">
+                                <field name="BOOL">TRUE</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="parallelexecution" id="i[T}M{DMQ^,T5(DO-YS:">
+                            <field name="OutFlowType">SYNC</field>
+                            <field name="InFlowType">OR</field>
+                            <next>
+                              <block type="noopstep" id="G{H}VQr3zqn%daO$YNAb"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="DO1">
+                      <block type="step" id="*~Rb8HD(IA:z7*4p#$ax">
+                        <field name="StepId">Step2b</field>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

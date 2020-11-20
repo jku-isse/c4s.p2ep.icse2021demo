@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="H*(/84b5qn,4;qwF$OK%">DefaultIssue</variable>
+    <variable id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</variable>
+    <variable id="C}~IFKh2q9+K52HJZS{u">JamaItem</variable>
+    <variable id="00!j^R$psKm^md17cto=">JamaWP</variable>
+    <variable id="u;!26$x5jr=#6W(dJO`R">y</variable>
+    <variable id="-ELj8|yM2)EM#BRu2oUv">id</variable>
+    <variable id="FXb:NaK2kE[[e!EmwJ?l">reqCheck</variable>
+    <variable id="`L_Jz/2.5WU?|CzakPQz">el</variable>
+    <variable id="wm4rq~,=JFN5gJDaa_x?">WPIssue</variable>
+    <variable id="9}?Vnd.A!0i!DAs9.L3Q">el2</variable>
+  </variables>
+  <block type="procedures_defnoreturn" id="V4NEc?ZsK+o)YYJfy7ga" x="-37" y="-12">
+    <mutation>
+      <arg name="DefaultIssue" varid="H*(/84b5qn,4;qwF$OK%"></arg>
+      <arg name="DefaultJamaItem" varid="#KR|et3)8{Z_UDD(gA!l"></arg>
+    </mutation>
+    <field name="NAME">SubWorkpackage</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="J;UY[l1]f89Q3$ykPk_o">
+        <field name="VAR" id="H*(/84b5qn,4;qwF$OK%">DefaultIssue</field>
+        <value name="VALUE">
+          <block type="fetchartifact" id="jr.uw7X]Jq#|5l=+VVKO">
+            <field name="NAME">Type</field>
+            <field name="IdType">Key</field>
+            <value name="Type">
+              <block type="artifact" id="=c;cX:BO9(|^_b5A8q0(">
+                <field name="Type">JiraIssue</field>
+              </block>
+            </value>
+            <value name="IdAtOrigin">
+              <block type="procedures_callreturn" id="JJK=#PVT#RF%4d9YNi0S">
+                <mutation name="extractJiraKeyFromJama">
+                  <arg name="JamaItem"></arg>
+                </mutation>
+                <value name="ARG0">
+                  <block type="variables_get" id="$AdEU_%y_0MU]SXPv5{F">
+                    <field name="VAR" id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="checkpoint" id="x3~DIthaG2V%h*PwxL09">
+            <value name="NAME">
+              <block type="logic_compare" id="8}I+fDzEDom@!(G`+)K}">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="fieldaccessor" id="]=t`O8)H2zp?^e?Jcg|I">
+                    <field name="NAME">status</field>
+                    <value name="var">
+                      <block type="variables_get" id=")|$)qfIzH5iTs[LP#!,,">
+                        <field name="VAR" id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id="fC[Cpk4zZ65]j5Y.sidP">
+                    <field name="TEXT">released</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="parallelexecution" id="~@SJb;Dm|-y67^sH+Zz;">
+                <mutation doPart="2"></mutation>
+                <field name="OutFlowType">SYNC</field>
+                <field name="InFlowType">XOR</field>
+                <statement name="DO0">
+                  <block type="variables_set" id="f~@fPba3RnODC;44s53I">
+                    <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                    <value name="VALUE">
+                      <block type="variables_get" id=",t81`o@YwCi/Q)j4)Uea">
+                        <field name="VAR" id="H*(/84b5qn,4;qwF$OK%">DefaultIssue</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="comment" id="s_K{]r4#c%zyi$55t{Z!">
+                        <field name="comment">enable step if ticket is ready to be worked on</field>
+                        <next>
+                          <block type="checkpoint" id="kYgU@n`[m4gtaHb9cTB]">
+                            <value name="NAME">
+                              <block type="logic_compare" id="*4u7|-(?F0kVMx`dN~qB">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                  <block type="fieldaccessor" id="X$0-FzB/p9W+0j8?mCxy">
+                                    <field name="NAME">status</field>
+                                    <value name="var">
+                                      <block type="variables_get" id="?)TS!W2K_J`y^a%]T-JC">
+                                        <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="text" id="JF}0NbG|K7:87-W}J/Kb">
+                                    <field name="TEXT">open</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="step" id="RVjOk-.iIh~+h:{Xawbe">
+                                <field name="StepId">refineRequirements</field>
+                                <statement name="Input">
+                                  <block type="artuse" id="iBy5-2ur5HrrUASd9kPc">
+                                    <field name="roletext">Role</field>
+                                    <field name="NAME">defaultRole</field>
+                                    <value name="NAME">
+                                      <block type="artifact" id="eNr%$l7l,km2scWR4S-2">
+                                        <field name="Type">JiraIssue</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="artuse" id="]wB~CKHmPB-:}f+8oTY6">
+                                        <field name="roletext">Role</field>
+                                        <field name="NAME">defaultRole2</field>
+                                        <value name="NAME">
+                                          <block type="fetchartifact" id="]Ehzr}9H1eoV?wBBQHIW">
+                                            <field name="NAME">Type</field>
+                                            <field name="IdType">Id</field>
+                                            <value name="Type">
+                                              <block type="artifact" id="Uh~=Q(z;4flSk-#(^8.v">
+                                                <field name="Type">JamaItem</field>
+                                              </block>
+                                            </value>
+                                            <value name="IdAtOrigin">
+                                              <block type="fieldaccessor" id="@Ar*KE/p_8L-nVuyaNZd">
+                                                <field name="NAME">JamaId</field>
+                                                <value name="var">
+                                                  <block type="variables_get" id="}g^;t?!?9w=TUI/3DYMc">
+                                                    <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <statement name="Transitions">
+                                  <block type="transition" id="qne0i%/7l]nG(!|]]{y9">
+                                    <field name="State">ACTIVE</field>
+                                    <value name="condition">
+                                      <block type="logic_compare" id="Fij9DF#wyAb}M8hklJ$.">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="fieldaccessor" id="WJfRIi5Zv/%FFO:f{]tF">
+                                            <field name="NAME">status</field>
+                                            <value name="var">
+                                              <block type="variables_get" id="e~Cpi[N,~a1stbhXg6g|">
+                                                <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="text" id=".S|P*3^#_:o]=-0v}9%k">
+                                            <field name="TEXT">in progress</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="transition" id="Idm@;cbHZ=[!3yqfbcl3">
+                                        <field name="State">COMPLETED</field>
+                                        <value name="condition">
+                                          <block type="logic_compare" id="aZY{$,/P~e_FVie{5BAi">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="fieldaccessor" id="jGZ_!9dc{twrEXQ=1Rfd">
+                                                <field name="NAME">status</field>
+                                                <value name="var">
+                                                  <block type="variables_get" id="jy9l+6TF($J5jdbwXG{,">
+                                                    <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="text" id="Z(yb_DzV9|?gRSlUOWWK">
+                                                <field name="TEXT">closed</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <statement name="Output">
+                                  <block type="artuse" id="aQwcSBFo3oiq.5kE^JN!">
+                                    <field name="roletext">Role</field>
+                                    <field name="NAME">inIssue</field>
+                                    <value name="NAME">
+                                      <block type="variables_get" id="F,Q)1C.(~2I%!L#qMhO+">
+                                        <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="qacheck" id="7nHQAjh2dWW-KT~zq)K_">
+                                        <field name="isHardConstraint">TRUE</field>
+                                        <value name="constraint">
+                                          <block type="procedures_callreturn" id="qXuB,i6#$R,y]]opQ!Qr">
+                                            <mutation name="checkLinkToHLReq">
+                                              <arg name="JamaWP"></arg>
+                                            </mutation>
+                                            <value name="ARG0">
+                                              <block type="variables_get" id="3~%9#5(PRafRN=PF]uYO">
+                                                <field name="VAR" id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="step" id="gQ5pE?71_Y96b@3@KLYD">
+                                    <field name="StepId">updateSpecification</field>
+                                    <statement name="Input">
+                                      <block type="artuse" id="fhH`TNT?Z`?{leANsn;g">
+                                        <field name="roletext">Role</field>
+                                        <field name="NAME">inIssue</field>
+                                        <value name="NAME">
+                                          <block type="variables_get" id="q,@l:YA+Hze[mH?3Zd{d">
+                                            <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                    <statement name="Transitions">
+                                      <block type="transition" id="6OIY4%*V%`Xk_@sj0swK">
+                                        <field name="State">COMPLETED</field>
+                                        <value name="condition">
+                                          <block type="logic_compare" id="-nn9.=/fheAWDc~`FMq=">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="fieldaccessor" id="z53M]V6/Er-,?+,@PN*d">
+                                                <field name="NAME">status</field>
+                                                <value name="var">
+                                                  <block type="variables_get" id="4mfVh?`Zq+md91+$1zIU">
+                                                    <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="text" id="BjGai){6*{I.qR~goqgT">
+                                                <field name="TEXT">fixed</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                    <statement name="Output">
+                                      <block type="qacheck" id="un,PP+O8ZuD*%C6^)_~%">
+                                        <field name="isHardConstraint">TRUE</field>
+                                        <comment pinned="false" h="80" w="160">Checks if a REq has at least one TC traced</comment>
+                                        <value name="constraint">
+                                          <block type="procedures_callreturn" id="BM?04I5_5P%:q*HHTm4C">
+                                            <mutation name="checkLinkToTC">
+                                              <arg name="JamaWP"></arg>
+                                            </mutation>
+                                            <value name="ARG0">
+                                              <block type="variables_get" id="GzG4voQol^gC?ViU.rSi">
+                                                <field name="VAR" id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="DO1">
+                  <block type="noopstep" id="kzd3AuM@5y;2/mg8qoy-"></block>
+                </statement>
+                <statement name="DO2">
+                  <block type="step" id="]X@Z+W]{V}LN0yJvx^9K">
+                    <field name="StepId">updateDocumentation</field>
+                  </block>
+                </statement>
+                <next>
+                  <block type="artuse" id="y)9@nn1+}7(WA:)=Gq5i">
+                    <field name="roletext">Role</field>
+                    <field name="NAME">jiraOut</field>
+                    <value name="NAME">
+                      <block type="variables_get" id="e#H,:6t,@hVWU7~Bl8S{">
+                        <field name="VAR" id="wm4rq~,=JFN5gJDaa_x?">WPIssue</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="artuse" id="o,%IllHqL9q8cC#-lW2P">
+                        <field name="roletext">Role</field>
+                        <field name="NAME">jamaOut</field>
+                        <value name="NAME">
+                          <block type="variables_get" id="(P2*;%e0CAqXR0E(8hh;">
+                            <field name="VAR" id="#KR|et3)8{Z_UDD(gA!l">DefaultJamaItem</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defreturn" id="8)vph48o;_QC5XeuMpIg" x="638" y="38">
+    <mutation>
+      <arg name="JamaItem" varid="C}~IFKh2q9+K52HJZS{u"></arg>
+    </mutation>
+    <field name="NAME">extractJiraKeyFromJama</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="2~9J{G36|oz2Y(9$opET">
+        <field name="VAR" id="-ELj8|yM2)EM#BRu2oUv">id</field>
+        <value name="VALUE">
+          <block type="fieldaccessor" id="Kymj}91hSP#g4~9*AO^s">
+            <field name="NAME">JIRA_ID</field>
+            <value name="var">
+              <block type="variables_get" id="*]I}ER`+2ki_:w}t!0`/">
+                <field name="VAR" id="C}~IFKh2q9+K52HJZS{u">JamaItem</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="GqO,dsUv_ftRJAv^G0Ld">
+        <field name="VAR" id="-ELj8|yM2)EM#BRu2oUv">id</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="D)Sn(UU5x:a6OQ??O`DC" x="-37" y="1238">
+    <mutation>
+      <arg name="JamaWP" varid="00!j^R$psKm^md17cto="></arg>
+    </mutation>
+    <field name="NAME">checkLinkToTC</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="PxAO/4Jz}(i[BV#@iedW">
+        <field name="VAR" id="FXb:NaK2kE[[e!EmwJ?l">reqCheck</field>
+        <value name="VALUE">
+          <block type="stream" id="Xllp!#g05{~i_vqm9{Yz">
+            <field name="NAME" id="`L_Jz/2.5WU?|CzakPQz">el</field>
+            <value name="NAME">
+              <block type="fieldaccessor" id=",.a_W~$a5%9g3:E26JFO">
+                <field name="NAME">downstreamElements</field>
+                <value name="var">
+                  <block type="variables_get" id="r7?7j=0}bsO:Qa1gYD(Q">
+                    <field name="VAR" id="00!j^R$psKm^md17cto=">JamaWP</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="do">
+              <block type="streamfilterop" id="m[`5B6h,#6f:3x2HLy2O">
+                <value name="NAME">
+                  <block type="logic_compare" id="SnC2_B18fyY*8,u-?ge0">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="fieldaccessor" id="-Lx8k*a7%KJG#b(fl@0^">
+                        <field name="NAME">type</field>
+                        <value name="var">
+                          <block type="variables_get" id="RJLkb)jk?!$U02U9qsRk">
+                            <field name="VAR" id="`L_Jz/2.5WU?|CzakPQz">el</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="qKmN++k3INU6kT.E.9pP">
+                        <field name="TEXT">Requirement</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="comment" id="4+JTs~#`D$m{MITpJUF~">
+                    <field name="comment">for each req we check whether</field>
+                    <next>
+                      <block type="streambooleanop" id="/it%/0De1|}9je`DrLCN">
+                        <field name="operator">ALLMATCH</field>
+                        <value name="NAME">
+                          <block type="logic_compare" id="Fz{E5~1^z4yS*psY~5=u">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="math_number" id="oV?e^7*t#Yb8#L4|ckO*">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="stream" id="BERM(tTXpHh^:5tG{UU,">
+                                <field name="NAME" id="9}?Vnd.A!0i!DAs9.L3Q">el2</field>
+                                <value name="NAME">
+                                  <block type="fieldaccessor" id="I*.RW3K8wx%hOHYIC?/]">
+                                    <field name="NAME">downstreamElements</field>
+                                    <value name="var">
+                                      <block type="variables_get" id="ydJ/#U3L~x%}aH)gN@U]">
+                                        <field name="VAR" id="`L_Jz/2.5WU?|CzakPQz">el</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="do">
+                                  <block type="comment" id="_5yz*=I#K$?pJ}N0TX=l">
+                                    <field name="comment">from its downsteam elements, at least one is of type Testcase</field>
+                                    <next>
+                                      <block type="streamfilterop" id="[Q,;;X93V/9edj(j??iW">
+                                        <value name="NAME">
+                                          <block type="logic_compare" id="AHwD%[/3U$tqzE?Zqi*F">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="fieldaccessor" id="+|VYGcy;gdMs)F:[wy_Q">
+                                                <field name="NAME">type</field>
+                                                <value name="var">
+                                                  <block type="variables_get" id="x~r~Z}aL=c9A2BxjF_Vu">
+                                                    <field name="VAR" id="9}?Vnd.A!0i!DAs9.L3Q">el2</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="text" id="dAdun7ADSZ5UirACsj_x">
+                                                <field name="TEXT">TestCase</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="streamnumberop" id="d0*DYt[,0MvkLPc2=oB2">
+                                            <field name="operator">COUNT</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="SU37L[GYH3$=l0os523M">
+        <field name="VAR" id="FXb:NaK2kE[[e!EmwJ?l">reqCheck</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="ZR6a.ue}2`sV-wH]{f`," x="-38" y="1638">
+    <mutation>
+      <arg name="JamaWP" varid="00!j^R$psKm^md17cto="></arg>
+    </mutation>
+    <field name="NAME">checkLinkToHLReq</field>
+    <comment pinned="false" h="48" w="373">each req of a SubWP needs to trace to a highlevel requirement</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="qG!BX9^`An8M3/iiOIdF">
+        <field name="VAR" id="FXb:NaK2kE[[e!EmwJ?l">reqCheck</field>
+        <value name="VALUE">
+          <block type="stream" id="9OQGhB,Bz0:gwPazF};$">
+            <field name="NAME" id="`L_Jz/2.5WU?|CzakPQz">el</field>
+            <value name="NAME">
+              <block type="fieldaccessor" id="L)[29IQD^JAwb+5kG56Q">
+                <field name="NAME">downstreamElements</field>
+                <value name="var">
+                  <block type="variables_get" id="`J7ho!XlMAVnQ@CX2;p7">
+                    <field name="VAR" id="00!j^R$psKm^md17cto=">JamaWP</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="do">
+              <block type="streamfilterop" id="/W33~bx$uWaL#E`NnEq$">
+                <value name="NAME">
+                  <block type="logic_compare" id=",6G,S:r!*w@Rc:6U8??J">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="fieldaccessor" id="O=L9U;S;=et__.wK5#RE">
+                        <field name="NAME">type</field>
+                        <value name="var">
+                          <block type="variables_get" id="~i9TRCr|LxPlm[eoyCAq">
+                            <field name="VAR" id="`L_Jz/2.5WU?|CzakPQz">el</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="DRu;~[$X*pBPMpl18qd0">
+                        <field name="TEXT">Requirement</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="comment" id="CviyFC3sjsA;D2$8_$XC">
+                    <field name="comment">for each req we check whether</field>
+                    <next>
+                      <block type="streambooleanop" id="Wt~e4yvFW0oG1y6(ey_u">
+                        <field name="operator">ALLMATCH</field>
+                        <value name="NAME">
+                          <block type="logic_compare" id="{jnTaK*kvI[7l?|%JSGF">
+                            <field name="OP">LT</field>
+                            <value name="A">
+                              <block type="math_number" id="mq{uGZl|Hl!S.)p#hyCf">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="stream" id="tNy5KG{~OV.jjr8/Z7fw">
+                                <field name="NAME" id="9}?Vnd.A!0i!DAs9.L3Q">el2</field>
+                                <value name="NAME">
+                                  <block type="fieldaccessor" id="nPALvB)X;[]Uur)fiNs0">
+                                    <field name="NAME">upstreamElements</field>
+                                    <value name="var">
+                                      <block type="variables_get" id="jQa@*5JKC?ONL{[1PaT=">
+                                        <field name="VAR" id="`L_Jz/2.5WU?|CzakPQz">el</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="do">
+                                  <block type="comment" id="|CqdF@gvKLwDnc!W`#:4">
+                                    <field name="comment">from its upstream elements, at least one is of type HighlevelReq</field>
+                                    <next>
+                                      <block type="streamfilterop" id="4~Z4`Ao(tR*v/mU7d505">
+                                        <value name="NAME">
+                                          <block type="logic_compare" id="Gd(J[CLlH6{jyGr:sttG">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="fieldaccessor" id="if_WHKP(WqxNk|kPqIgQ">
+                                                <field name="NAME">type</field>
+                                                <value name="var">
+                                                  <block type="variables_get" id="KtbwIV4A.o`DVnNVUWFt">
+                                                    <field name="VAR" id="9}?Vnd.A!0i!DAs9.L3Q">el2</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="text" id="=Jnk?J_46VZ`y4TVo!)i">
+                                                <field name="TEXT">HighlevelReq</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="streamnumberop" id="bD}gIlnVagX[[GRe^n-v">
+                                            <field name="operator">COUNT</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="9(V9T/bLj+q|7$8CJdNj">
+        <field name="VAR" id="FXb:NaK2kE[[e!EmwJ?l">reqCheck</field>
+      </block>
+    </value>
+  </block>
+</xml>
